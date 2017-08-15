@@ -13,7 +13,7 @@ function createDeck() {
       deck.push({'value': cards[i], 'suit': suit[j], 'point': getPoints(cards[i])})
     }
   }
-  return deck;
+  return deck
 }
 
 function getPoints(card) {
@@ -71,4 +71,4 @@ class NewCard extends Component {
   }
 }
 
-export default NewCard;
+export default NewCard
