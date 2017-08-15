@@ -4,13 +4,13 @@ import './App.css'
 const cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 const suit = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 const deck = []
-var shuffledCards = []
-var card;
+let shuffledCards = []
+let card;
 
 function createDeck() {
   for(var i = 0; i < cards.length; i++) {
     for(var j = 0; j < suit.length; j++) {
-      deck.push({'value': cards[i], 'suit': suit[j], 'point': getPoints(cards[i])});
+      deck.push({'value': cards[i], 'suit': suit[j], 'point': getPoints(cards[i])})
     }
   }
   return deck;
@@ -23,7 +23,7 @@ function getPoints(card) {
     return 10
   } else {
     return card
-  }  
+  }
 }
 
 (function shuffle() {
@@ -40,7 +40,7 @@ function getPoints(card) {
 function deal() {
   card = shuffledCards[0]
   shuffledCards.splice(0, 1)
-};
+}
 
 deal()
 
@@ -59,6 +59,12 @@ class NewCard extends Component {
   render() {
     return (
       <div>
+
+      <div className={`card ${this.state.suit}`}>
+        <span> {this.state.value} </span>
+        <span className={`reverse ${this.state.suit}`}> {this.state.value} </span>
+      </div>
+
 
       </div>
     )
