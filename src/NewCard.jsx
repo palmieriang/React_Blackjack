@@ -5,6 +5,7 @@ const cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 const suit = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 const deck = []
 var shuffledCards = []
+var card;
 
 function createDeck() {
   for(var i = 0; i < cards.length; i++) {
@@ -17,47 +18,50 @@ function createDeck() {
 
 function getPoints(card) {
   if(card === 'A') {
-    return 11;
+    return 11
   } else if(card === 'J' || card === 'Q' || card === 'K') {
-    return 10;
+    return 10
   } else {
-    return card;
+    return card
   }  
 }
 
 (function shuffle() {
-  // $('#hit').attr("disabled", false);
-  shuffledCards = createDeck();
+  shuffledCards = createDeck()
   for (var i = shuffledCards.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = shuffledCards[i];
-    shuffledCards[i] = shuffledCards[j];
-    shuffledCards[j] = temp;
+    var j = Math.floor(Math.random() * (i + 1))
+    var temp = shuffledCards[i]
+    shuffledCards[i] = shuffledCards[j]
+    shuffledCards[j] = temp
   }
-  return shuffledCards;
-})();
+  return shuffledCards
+})()
 
+function deal() {
+  card = shuffledCards[0]
+  shuffledCards.splice(0, 1)
+};
+
+deal()
+
+console.log(card)
 
 class NewCard extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      card: '',
-      suit: ''
+      value: card.value,
+      suit: card.suit,
+      point: card.point
     }
   }
 
   render() {
-
-
-  console.log(deck)
-
-
     return (
       <div>
 
       </div>
-    );
+    )
   }
 }
 
