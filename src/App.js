@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import NewCard from './NewCard';
+import PlayersCard from './PlayersCard';
 import './App.css';
 
+const playersCard = 2;
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <NewCard />
+        <PlayersCard playersCard={playersCard} />
       </div>
     );
   }
