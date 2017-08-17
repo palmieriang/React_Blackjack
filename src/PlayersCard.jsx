@@ -4,6 +4,7 @@ import './App.css'
 
 class PlayersCard extends Component {
 	render() {
+	console.log(this.props)
 		return (
       <NewCard />
 		)
