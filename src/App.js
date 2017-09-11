@@ -1,11 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import NewCard from './NewCard';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import NewCard from './NewCard'
+import './App.css'
 
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      dealerCards: 2,
+      playerCards: 2
+    }
+  }
+
   render() {
+    const {playerCards} = this.state
+    console.log(playerCards)
+
     return (
       <div className="App">
         <div className="App-header">
