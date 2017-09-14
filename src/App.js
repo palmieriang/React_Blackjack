@@ -49,25 +49,35 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      value: card.value,
-      suit: card.suit,
-      point: card.point,
-      dealerCards: [1],
-      playerCards: [1]
+      dealerCards: [card],
+      playerCards: [card]
     }
   }
 
+  deal() {
+    card = shuffledCards[0]
+    shuffledCards.splice(0, 1)
+    let cards = []
+    cards.push(card)
+    console.log(cards)
+    // this.setState({
+    //   dealerCards: [...card],
+    //   playerCards: [...card]
+    // })
+  }
+
   render() {
-    const {value, suit, playerCards} = this.state
+    const {playerCards} = this.state
     console.log(playerCards)
 
     return (
       <div className="App">
         <div className="player">
           {playerCards.map((card, index) => (
-            <NewCard key={index} value={value} suit={suit} />
+            <NewCard key={index} value={card.value} suit={card.suit} />
           ))}
         </div>
+        <button onClick={this.deal}>Card</button>
       </div>
     );
   }
