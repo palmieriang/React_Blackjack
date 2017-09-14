@@ -61,8 +61,8 @@ class App extends Component {
     cards.push(card)
     console.log(cards)
     // this.setState({
-    //   dealerCards: [...card],
-    //   playerCards: [...card]
+    //   dealerCards: [card, ...dealerCards],
+    //   playerCards: [card, ...playerCards]
     // })
   }
 
