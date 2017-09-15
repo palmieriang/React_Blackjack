@@ -8,15 +8,6 @@ const deck = []
 let shuffledCards = []
 let card;
 
-function createDeck() {
-  for(var i = 0; i < cards.length; i++) {
-    for(var j = 0; j < suit.length; j++) {
-      deck.push({'value': cards[i], 'suit': suit[j], 'point': getPoints(cards[i])})
-    }
-  }
-  return deck
-}
-
 function getPoints(card) {
   if(card === 'A') {
     return 11
@@ -27,43 +18,47 @@ function getPoints(card) {
   }
 }
 
-(function shuffle() {
-  shuffledCards = createDeck()
-  for (var i = shuffledCards.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1))
-    var temp = shuffledCards[i]
-    shuffledCards[i] = shuffledCards[j]
-    shuffledCards[j] = temp
-  }
-  return shuffledCards
-})()
-
-function deal() {
-  card = shuffledCards[0]
-  shuffledCards.splice(0, 1)
-}
-
-deal()
-
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      dealerCards: [card],
-      playerCards: [card]
+      deck: this.shuffle(this.createDeck()),
+      dealerCards: null,
+      playerCards: null
     }
   }
 
+  createDeck() {
+    for(var i = 0; i < cards.length; i++) {
+      for(var j = 0; j < suit.length; j++) {
+        deck.push({'value': cards[i], 'suit': suit[j], 'point': getPoints(cards[i])})
+      }
+    }
+    return deck
+  }
+
+  shuffle(deck) {
+    for (var i = deck.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1))
+      var temp = deck[i]
+      deck[i] = deck[j]
+      deck[j] = temp
+    }
+    return deck
+  }
+
+  componentDidMount() {
+    
+  }
+
   deal() {
+    const {dealerCards, playerCards} = this.state
     card = shuffledCards[0]
     shuffledCards.splice(0, 1)
-    let cards = []
-    cards.push(card)
-    console.log(cards)
-    // this.setState({
-    //   dealerCards: [card, ...dealerCards],
-    //   playerCards: [card, ...playerCards]
-    // })
+    this.setState({
+      dealerCards: [card, ...dealerCards],
+      playerCards: [card, ...playerCards]
+    })
   }
 
   render() {
