@@ -49,11 +49,11 @@ class App extends Component {
 
   componentDidMount() {
     const {deck, dealerCards, playerCards} = this.state
-    const newCard = deck.shift()
+    const [card, …cards] = deck
     this.setState({
-      deck: deck,
-      dealerCards: [...newCard],
-      playerCards: [...newCard]
+      deck: cards,
+      dealerCards: [card],
+      playerCards: [card]
     })
   }
 
