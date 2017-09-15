@@ -5,7 +5,7 @@ import './App.css'
 const cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 const suit = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 const deck = []
-let shuffledCards = []
+
 let card;
 
 function getPoints(card) {
@@ -48,13 +48,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    
+    const {deck, dealerCards, playerCards} = this.state
+    const newCard = deck.shift()
+    this.setState({
+      deck: deck,
+      dealerCards: [...newCard],
+      playerCards: [...newCard]
+    })
   }
 
   deal() {
-    const {dealerCards, playerCards} = this.state
-    card = shuffledCards[0]
-    shuffledCards.splice(0, 1)
+    const {deck, dealerCards, playerCards} = this.state
+    const card = deck.shift()
     this.setState({
       dealerCards: [card, ...dealerCards],
       playerCards: [card, ...playerCards]
