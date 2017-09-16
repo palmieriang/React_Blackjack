@@ -6,8 +6,6 @@ const cards = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 const suit = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 const deck = []
 
-let card;
-
 function getPoints(card) {
   if(card === 'A') {
     return 11
@@ -48,7 +46,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const {deck, dealerCards, playerCards} = this.state
+    const {deck} = this.state
     const [card1, card2, card3, card4, ...cards] = deck
 
     this.setState({
@@ -68,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-    const {playerCards} = this.state
+    const {dealerCards, playerCards} = this.state
     console.log(playerCards)
 
     return (
@@ -79,6 +77,11 @@ class App extends Component {
           ))}
         </div>
         <button onClick={this.deal}>Card</button>
+        <div className="player">
+          {dealerCards.map((card, index) => (
+            <NewCard key={index} value={card.value} suit={card.suit} />
+          ))}
+        </div>
       </div>
     );
   }
