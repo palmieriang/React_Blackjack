@@ -23,8 +23,8 @@ class App extends Component {
     super()
     this.state = {
       deck: this.shuffle(this.createDeck()),
-      dealerCards: null,
-      playerCards: null
+      dealerCards: [],
+      playerCards: []
     }
   }
 
@@ -49,9 +49,8 @@ class App extends Component {
 
   componentDidMount() {
     const {deck, dealerCards, playerCards} = this.state
-    const [card1, card2, card3, card4, …cards] = deck
-    console.log(card1, card2, card3, card4)
-    debugger
+    const [card1, card2, card3, card4, ...cards] = deck
+
     this.setState({
       deck: cards,
       dealerCards: [card2, card4],
