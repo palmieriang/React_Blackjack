@@ -49,11 +49,13 @@ class App extends Component {
 
   componentDidMount() {
     const {deck, dealerCards, playerCards} = this.state
-    const [card, …cards] = deck
+    const [card1, card2, card3, card4, …cards] = deck
+    console.log(card1, card2, card3, card4)
+    debugger
     this.setState({
       deck: cards,
-      dealerCards: [card],
-      playerCards: [card]
+      dealerCards: [card2, card4],
+      playerCards: [card1, card3]
     })
   }
 
