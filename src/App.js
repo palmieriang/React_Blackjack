@@ -24,6 +24,8 @@ class App extends Component {
       dealerCards: [],
       playerCards: []
     }
+    this.deal = this.deal.bind(this)
+    this.score = this.score.bind(this)
   }
 
   createDeck() {
@@ -46,7 +48,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const {deck} = this.state
+    const {deck, playerCards} = this.state
     const [card1, card2, card3, card4, ...cards] = deck
 
     this.setState({
@@ -54,20 +56,25 @@ class App extends Component {
       dealerCards: [card2, card4],
       playerCards: [card1, card3]
     })
+    this.score(playerCards)
   }
 
   deal() {
     const {deck, dealerCards, playerCards} = this.state
     const card = deck.shift()
+
     this.setState({
-      dealerCards: [card, ...dealerCards],
-      playerCards: [card, ...playerCards]
+      dealerCards: [...dealerCards, card],
+      playerCards: [...playerCards, card]
     })
+  }
+
+  score(cards) {
+    console.log(cards)
   }
 
   render() {
     const {dealerCards, playerCards} = this.state
-    console.log(playerCards)
 
     return (
       <div className="App">
