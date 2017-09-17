@@ -22,9 +22,11 @@ class App extends Component {
     this.state = {
       deck: this.shuffle(this.createDeck()),
       dealerCards: [],
-      playerCards: []
+      playerCards: [],
+      isPlayer: true
     }
     this.deal = this.deal.bind(this)
+    this.stick = this.stick.bind(this)
     this.score = this.score.bind(this)
   }
 
@@ -60,12 +62,24 @@ class App extends Component {
   }
 
   deal() {
-    const {deck, dealerCards, playerCards} = this.state
+    const {deck, dealerCards, playerCards, isPlayer} = this.state
     const card = deck.shift()
 
+    if (isPlayer) {
+      this.setState({
+        playerCards: [...playerCards, card]
+      })
+    } else {
+      this.setState({
+        dealerCards: [...dealerCards, card]
+      })
+    }
+  }
+
+  stick() {
+    const {isPlayer} = this.state
     this.setState({
-      dealerCards: [...dealerCards, card],
-      playerCards: [...playerCards, card]
+      isPlayer: !isPlayer
     })
   }
 
@@ -83,7 +97,10 @@ class App extends Component {
             <NewCard key={index} value={card.value} suit={card.suit} />
           ))}
         </div>
-        <button onClick={this.deal}>Card</button>
+        <div className="player-button">
+          <button onClick={this.deal}>Hit</button>
+          <button onClick={this.stick}>Stick</button>
+        </div>
         <div className="player">
           {dealerCards.map((card, index) => (
             <NewCard key={index} value={card.value} suit={card.suit} />
