@@ -86,13 +86,13 @@ class App extends Component {
     if (cards.length > 0) {
       var score = cards.reduce(function (score, card) { return score + card.point; }, 0)
     }
-    console.log(score)
+    return score
   }
 
   render() {
     const {dealerCards, playerCards} = this.state
 
-    {this.calculateScore(playerCards)} 
+     
 
     return (
       <div className="App">
@@ -104,7 +104,7 @@ class App extends Component {
 
         <div className="console-center">
           <div>
-            <p></p>
+            <p>{this.calculateScore(playerCards)}</p>
           </div>
           <div>
             <button onClick={this.deal}>Hit</button>
