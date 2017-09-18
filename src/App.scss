@@ -2,14 +2,15 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .player {
   display: flex;
   flex-wrap: wrap;
+}
+
+.console-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .card {

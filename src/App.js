@@ -23,13 +23,11 @@ class App extends Component {
       deck: this.shuffle(this.createDeck()),
       dealerCards: [],
       playerCards: [],
-      isPlayer: true,
-      scorePlayer: 0,
-      scoreDealer: 0
+      isPlayer: true
     }
     this.deal = this.deal.bind(this)
     this.stick = this.stick.bind(this)
-    this.score = this.score.bind(this)
+    this.calculateScore = this.calculateScore.bind(this)
   }
 
   createDeck() {
@@ -84,18 +82,17 @@ class App extends Component {
     })
   }
 
-  score(cards) {
+  calculateScore(cards) {
     if (cards.length > 0) {
-      const score = cards.reduce((a, b) => ({point: a.point + b.point}))
-      this.setState({
-        scorePlayer: score
-      })      
+      var score = cards.reduce(function (score, card) { return score + card.point; }, 0)
     }
+    console.log(score)
   }
 
   render() {
     const {dealerCards, playerCards} = this.state
-    {this.score(playerCards)}
+
+    {this.calculateScore(playerCards)} 
 
     return (
       <div className="App">
@@ -104,10 +101,17 @@ class App extends Component {
             <NewCard key={index} value={card.value} suit={card.suit} />
           ))}
         </div>
-        <div>
-          <button onClick={this.deal}>Hit</button>
-          <button onClick={this.stick}>Stick</button>
+
+        <div className="console-center">
+          <div>
+            <p></p>
+          </div>
+          <div>
+            <button onClick={this.deal}>Hit</button>
+            <button onClick={this.stick}>Stick</button>
+          </div>
         </div>
+
         <div className="player">
           {dealerCards.map((card, index) => (
             <NewCard key={index} value={card.value} suit={card.suit} />
