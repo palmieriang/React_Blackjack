@@ -23,7 +23,9 @@ class App extends Component {
       deck: this.shuffle(this.createDeck()),
       dealerCards: [],
       playerCards: [],
-      isPlayer: true
+      isPlayer: true,
+      scorePlayer: 0,
+      scoreDealer: 0
     }
     this.deal = this.deal.bind(this)
     this.stick = this.stick.bind(this)
@@ -50,7 +52,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const {deck, playerCards} = this.state
+    const {deck} = this.state
     const [card1, card2, card3, card4, ...cards] = deck
 
     this.setState({
@@ -58,7 +60,6 @@ class App extends Component {
       dealerCards: [card2, card4],
       playerCards: [card1, card3]
     })
-    this.score(playerCards)
   }
 
   deal() {
@@ -85,10 +86,12 @@ class App extends Component {
 
   score(cards) {
     console.log(cards)
+
   }
 
   render() {
     const {dealerCards, playerCards} = this.state
+    {this.score(playerCards)}
 
     return (
       <div className="App">
@@ -97,7 +100,7 @@ class App extends Component {
             <NewCard key={index} value={card.value} suit={card.suit} />
           ))}
         </div>
-        <div className="player-button">
+        <div>
           <button onClick={this.deal}>Hit</button>
           <button onClick={this.stick}>Stick</button>
         </div>
@@ -111,4 +114,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
