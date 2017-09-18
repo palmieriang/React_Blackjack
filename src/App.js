@@ -85,8 +85,12 @@ class App extends Component {
   }
 
   score(cards) {
-    console.log(cards)
-
+    if (cards.length > 0) {
+      const score = cards.reduce((a, b) => ({point: a.point + b.point}))
+      this.setState({
+        scorePlayer: score
+      })      
+    }
   }
 
   render() {
