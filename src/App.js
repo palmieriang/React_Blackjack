@@ -90,11 +90,25 @@ class App extends Component {
     return score
   }
 
+  checkWinner() {
+    const {dealerCards, playerCards} = this.state
+    let winner = ''
+
+    if (this.calculateScore(playerCards) > 21) {
+      winner = 'You lose'
+    }
+    if (this.calculateScore(dealerCards) > 21) {
+      winner = 'You win'
+    }
+    return winner
+  }
+
   render() {
     const {dealerCards, playerCards} = this.state
 
     return (
       <div className="App">
+        <p>{this.checkWinner(playerCards)}</p>
         <div className="player">
           {playerCards.map((card, index) => (
             <NewCard key={index} value={card.value} suit={card.suit} />
