@@ -83,16 +83,15 @@ class App extends Component {
   }
 
   calculateScore(cards) {
+    let score = 0
     if (cards.length > 0) {
-      var score = cards.reduce(function (score, card) { return score + card.point; }, 0)
+      score = cards.reduce(function (score, card) { return score + card.point; }, 0)
     }
     return score
   }
 
   render() {
     const {dealerCards, playerCards} = this.state
-
-     
 
     return (
       <div className="App">
@@ -121,7 +120,7 @@ class App extends Component {
           ))}
         </div>
       </div>
-    );
+    )
   }
 }
 
