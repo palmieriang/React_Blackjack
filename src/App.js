@@ -110,6 +110,9 @@ class App extends Component {
             <button onClick={this.deal}>Hit</button>
             <button onClick={this.stick}>Stick</button>
           </div>
+          <div>
+            <p>{this.calculateScore(dealerCards)}</p>
+          </div>
         </div>
 
         <div className="player">
