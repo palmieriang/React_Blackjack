@@ -27,7 +27,7 @@ class App extends Component {
     }
     this.deal = this.deal.bind(this)
     this.stick = this.stick.bind(this)
-    this.restart = this.restart.bind(this)
+    this.start = this.start.bind(this)
     this.calculateScore = this.calculateScore.bind(this)
   }
 
@@ -51,14 +51,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const {deck} = this.state
-    const [card1, card2, card3, card4, ...cards] = deck
-
-    this.setState({
-      deck: cards,
-      dealerCards: [card2, card4],
-      playerCards: [card1, card3]
-    })
+    this.start()
   }
 
   deal() {
@@ -104,7 +97,7 @@ class App extends Component {
     return winner
   }
 
-  restart() {
+  start() {
     const {deck} = this.state
     const [card1, card2, card3, card4, ...cards] = deck
 
@@ -134,7 +127,7 @@ class App extends Component {
           <div>
             <button onClick={this.deal}>Hit</button>
             <button onClick={this.stick}>Stick</button>
-            <button onClick={this.restart}>Restart</button>
+            <button onClick={this.start}>Restart</button>
           </div>
           <div>
             <p>{this.calculateScore(dealerCards)}</p>
