@@ -27,8 +27,8 @@ class App extends Component {
     }
     this.deal = this.deal.bind(this)
     this.stick = this.stick.bind(this)
-    this.start = this.start.bind(this)
     this.calculateScore = this.calculateScore.bind(this)
+    this.start = this.start.bind(this)
   }
 
   createDeck() {
@@ -70,10 +70,16 @@ class App extends Component {
   }
 
   stick() {
-    const {isPlayer} = this.state
+    const {dealerCards, isPlayer} = this.state
+    const score = this.calculateScore(dealerCards)
+
     this.setState({
       isPlayer: !isPlayer
     })
+
+    if(score < 17) {
+      this.deal()
+    }
   }
 
   calculateScore(cards) {
