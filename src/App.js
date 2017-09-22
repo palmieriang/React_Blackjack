@@ -70,14 +70,16 @@ class App extends Component {
   }
 
   stick() {
-    const {dealerCards, isPlayer} = this.state
-    const score = this.calculateScore(dealerCards)
+    const {dealerCards, playerCards, isPlayer} = this.state
+    const scoreDealer = this.calculateScore(dealerCards)
+    const scorePlayer = this.calculateScore(playerCards)
+    console.log(scorePlayer, scoreDealer)
 
     this.setState({
       isPlayer: !isPlayer
     })
 
-    if(score < 17) {
+    if(scoreDealer < scorePlayer) {
       this.deal()
     }
   }
@@ -91,14 +93,25 @@ class App extends Component {
   }
 
   checkWinner() {
-    const {dealerCards, playerCards} = this.state
+    const {dealerCards, playerCards, isPlayer} = this.state
+    const scoreDealer = this.calculateScore(dealerCards)
+    const scorePlayer = this.calculateScore(playerCards)
     let winner = ''
 
-    if (this.calculateScore(playerCards) > 21) {
+    if (scorePlayer > 21) {
       winner = 'You lose'
     }
-    if (this.calculateScore(dealerCards) > 21) {
+    if (scoreDealer > 21) {
       winner = 'You win'
+    }
+    if (!isPlayer && scoreDealer >= 17 && scoreDealer <= 21) {
+      if (scoreDealer > scorePlayer) {
+        winner = 'You lose'
+      } else if (scoreDealer < scorePlayer) {
+        winner = 'You win'
+      } else if (scoreDealer === scorePlayer) {
+        winner = 'Tie'
+      }
     }
     return winner
   }
