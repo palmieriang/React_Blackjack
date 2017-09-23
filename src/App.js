@@ -104,14 +104,8 @@ class App extends Component {
     if (scoreDealer > 21) {
       winner = 'You win'
     }
-    if (!isPlayer && scoreDealer >= 17 && scoreDealer <= 21) {
-      if (scoreDealer > scorePlayer) {
-        winner = 'You lose'
-      } else if (scoreDealer < scorePlayer) {
-        winner = 'You win'
-      } else if (scoreDealer === scorePlayer) {
-        winner = 'Tie'
-      }
+    if (!isPlayer && scoreDealer === scorePlayer) {
+      winner = 'Tie'
     }
     return winner
   }
