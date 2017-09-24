@@ -73,7 +73,6 @@ class App extends Component {
     const {dealerCards, playerCards, isPlayer} = this.state
     const scoreDealer = this.calculateScore(dealerCards)
     const scorePlayer = this.calculateScore(playerCards)
-    console.log(scorePlayer, scoreDealer)
 
     this.setState({
       isPlayer: !isPlayer
@@ -117,7 +116,8 @@ class App extends Component {
     this.setState({
       deck: cards,
       dealerCards: [card2, card4],
-      playerCards: [card1, card3]
+      playerCards: [card1, card3],
+      isPlayer: true
     })
   }
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './App.css'
 
 class NewCard extends Component {
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <div className={`card ${this.props.suit}`}>
@@ -13,6 +15,14 @@ class NewCard extends Component {
       </div>
     )
   }
+}
+
+NewCard.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired
+  ]),
+  suit: PropTypes.string.isRequired
 }
 
 export default NewCard
