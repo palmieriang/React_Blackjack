@@ -126,7 +126,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <p>{this.checkWinner(playerCards)}</p>
+        <div className="header">BlackJack</div>
+        <p className="winner-row">{this.checkWinner(playerCards)}</p>
         <div className="player">
           {playerCards.map((card, index) => (
             <NewCard key={index} value={card.value} suit={card.suit} />
