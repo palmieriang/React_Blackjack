@@ -57,7 +57,7 @@ class App extends Component {
   deal(player) {
     const {deck, dealerCards, playerCards, isPlayer} = this.state
     const card = deck.shift()
-    // debugger
+
     if (player) {
       this.setState({
         playerCards: [...playerCards, card]
@@ -79,7 +79,6 @@ class App extends Component {
     })
 
     if(scoreDealer < scorePlayer) {
-      // debugger
       this.deal(false)
     }
   }
@@ -107,12 +106,15 @@ class App extends Component {
     if (!isPlayer && scoreDealer === scorePlayer) {
       winner = 'Tie'
     }
+    if (!isPlayer && scoreDealer > scorePlayer && scoreDealer) {
+      winner = 'You lose'
+    }    
     return winner
   }
 
   start() {
     const {deck} = this.state
-    const [card1, card2, card3, card4, ...cards] = deck
+    const [card1, card2, card3, ...cards] = deck
 
     this.setState({
       deck: cards,
