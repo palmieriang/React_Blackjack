@@ -54,11 +54,11 @@ class App extends Component {
     this.start()
   }
 
-  deal() {
+  deal(player) {
     const {deck, dealerCards, playerCards, isPlayer} = this.state
     const card = deck.shift()
-
-    if (isPlayer) {
+    // debugger
+    if (player) {
       this.setState({
         playerCards: [...playerCards, card]
       })
@@ -79,7 +79,8 @@ class App extends Component {
     })
 
     if(scoreDealer < scorePlayer) {
-      this.deal()
+      // debugger
+      this.deal(false)
     }
   }
 
@@ -115,7 +116,7 @@ class App extends Component {
 
     this.setState({
       deck: cards,
-      dealerCards: [card2, card4],
+      dealerCards: [card2],
       playerCards: [card1, card3],
       isPlayer: true
     })
@@ -139,7 +140,7 @@ class App extends Component {
             <p>{this.calculateScore(playerCards)}</p>
           </div>
           <div>
-            <button onClick={this.deal}>Hit</button>
+            <button onClick={() => this.deal(true)}>Hit</button>
             <button onClick={this.stick}>Stick</button>
             <button onClick={this.start}>Restart</button>
           </div>
