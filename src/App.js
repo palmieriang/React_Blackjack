@@ -71,15 +71,17 @@ class App extends Component {
 
   stick() {
     const {dealerCards, playerCards, isPlayer} = this.state
-    const scoreDealer = this.calculateScore(dealerCards)
-    const scorePlayer = this.calculateScore(playerCards)
+    let scoreDealer = this.calculateScore(dealerCards)
+    let scorePlayer = this.calculateScore(playerCards)
 
     this.setState({
-      isPlayer: !isPlayer
+      isPlayer: false
     })
 
     if(scoreDealer < scorePlayer) {
       this.deal(false)
+      scoreDealer = this.calculateScore(dealerCards)
+      console.log(scoreDealer)
     }
   }
 
@@ -129,7 +131,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="header">BlackJack</div>
+        <div className="header">&#9734; BlackJack &#9734;</div>
         <p className="winner-row">{this.checkWinner(playerCards)}</p>
         <div className="player">
           {playerCards.map((card, index) => (
