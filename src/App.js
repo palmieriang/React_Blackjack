@@ -147,8 +147,8 @@ class App extends Component {
             <p>{this.calculateScore(playerCards)}</p>
           </div>
           <div>
-            <button onClick={() => this.deal(true)} disabled={!isPlayerg}>Hit</button>
-            <button onClick={this.stick} disabled={!isPlayerg}>Stick</button>
+            <button onClick={() => this.deal(true)} disabled={!isPlayer}>Hit</button>
+            <button onClick={this.stick} disabled={!isPlayer}>Stick</button>
             <button onClick={this.start}>Play again</button>
           </div>
           <div>
