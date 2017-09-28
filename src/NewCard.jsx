@@ -5,9 +5,10 @@ import './App.css'
 class NewCard extends Component {
 
   render() {
+    console.log(this.props)
     return (
       <div>
-        <div className={`card ${this.props.suit}`}>
+        <div className={`card ${this.props.suit} index-${this.props.index}`}>
           <span> {this.props.value} </span>
           <span className={`reverse ${this.props.suit}`}> {this.props.value} </span>
         </div>

@@ -127,7 +127,7 @@ class App extends Component {
   }
 
   render() {
-    const {dealerCards, playerCards} = this.state
+    const {dealerCards, playerCards, isPlayer} = this.state
 
     return (
       <div className="App">
@@ -144,8 +144,8 @@ class App extends Component {
             <p>{this.calculateScore(playerCards)}</p>
           </div>
           <div>
-            <button onClick={() => this.deal(true)}>Hit</button>
-            <button onClick={this.stick}>Stick</button>
+            <button onClick={() => this.deal(true)} disabled={!isPlayerg}>Hit</button>
+            <button onClick={this.stick} disabled={!isPlayerg}>Stick</button>
             <button onClick={this.start}>Restart</button>
           </div>
           <div>
@@ -155,7 +155,7 @@ class App extends Component {
 
         <div className="player">
           {dealerCards.map((card, index) => (
-            <NewCard key={index} value={card.value} suit={card.suit} />
+            <NewCard key={index} index={index} value={card.value} suit={card.suit} />
           ))}
         </div>
       </div>
