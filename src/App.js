@@ -108,9 +108,12 @@ class App extends Component {
     if (!isPlayer && scoreDealer === scorePlayer) {
       winner = 'Tie'
     }
-    if (!isPlayer && scoreDealer > scorePlayer && scoreDealer) {
+    if (!isPlayer && scoreDealer > scorePlayer && scoreDealer <= 21) {
       winner = 'You lose'
-    }    
+    }
+    if (!isPlayer && scoreDealer < scorePlayer) {
+      this.deal(false)
+    }
     return winner
   }
 
@@ -146,7 +149,7 @@ class App extends Component {
           <div>
             <button onClick={() => this.deal(true)} disabled={!isPlayerg}>Hit</button>
             <button onClick={this.stick} disabled={!isPlayerg}>Stick</button>
-            <button onClick={this.start}>Restart</button>
+            <button onClick={this.start}>Play again</button>
           </div>
           <div>
             <p>{this.calculateScore(dealerCards)}</p>
