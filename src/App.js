@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   deal(player) {
-    const {deck, dealerCards, playerCards, isPlayer} = this.state
+    const {deck, dealerCards, playerCards} = this.state
     const card = deck.shift()
 
     if (player) {
@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   stick() {
-    const {dealerCards, playerCards, isPlayer} = this.state
+    const {dealerCards, playerCards} = this.state
     let scoreDealer = this.calculateScore(dealerCards)
     let scorePlayer = this.calculateScore(playerCards)
 
@@ -130,7 +130,7 @@ class App extends Component {
   }
 
   render() {
-    const {dealerCards, playerCards, isPlayer} = this.state
+    const {dealerCards, playerCards} = this.state
 
     return (
       <div className="App">
@@ -147,8 +147,8 @@ class App extends Component {
             <p>{this.calculateScore(playerCards)}</p>
           </div>
           <div>
-            <button onClick={() => this.deal(true)} disabled={!isPlayer}>Hit</button>
-            <button onClick={this.stick} disabled={!isPlayer}>Stick</button>
+            <button onClick={() => this.deal(true)} disabled={this.checkWinner(playerCards).length > 0}>Hit</button>
+            <button onClick={this.stick} disabled={this.checkWinner(playerCards).length > 0}>Stick</button>
             <button onClick={this.start}>Play again</button>
           </div>
           <div>
