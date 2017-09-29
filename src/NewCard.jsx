@@ -8,10 +8,15 @@ class NewCard extends Component {
     console.log(this.props)
     return (
       <div>
-        <div className={`card ${this.props.suit} index-${this.props.index}`}>
-          <span> {this.props.value} </span>
-          <span className={`reverse ${this.props.suit}`}> {this.props.value} </span>
-        </div>
+        {this.props.index !== 0 && <div className={`card ${this.props.suit}`}>
+                  <span> {this.props.value} </span>
+                  <span className={`reverse ${this.props.suit}`}> {this.props.value} </span>
+                </div>}
+        {this.props.index === 0 && !this.props.isPlayer && <div className={`card ${this.props.suit}`}>
+                  <span> {this.props.value} </span>
+                  <span className={`reverse ${this.props.suit}`}> {this.props.value} </span>
+                </div>}
+        {this.props.index === 0 && this.props.isPlayer && <div className={`card ${this.props.index === 0 ? "first-card" : ""}`}></div>}
       </div>
     )
   }

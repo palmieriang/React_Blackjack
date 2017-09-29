@@ -119,18 +119,18 @@ class App extends Component {
 
   start() {
     const {deck} = this.state
-    const [card1, card2, card3, ...cards] = deck
+    const [card1, card2, card3, card4, ...cards] = deck
 
     this.setState({
       deck: cards,
-      dealerCards: [card2],
+      dealerCards: [card2, card4],
       playerCards: [card1, card3],
       isPlayer: true
     })
   }
 
   render() {
-    const {dealerCards, playerCards} = this.state
+    const {dealerCards, playerCards, isPlayer} = this.state
 
     return (
       <div className="App">
@@ -158,7 +158,7 @@ class App extends Component {
 
         <div className="player">
           {dealerCards.map((card, index) => (
-            <NewCard key={index} index={index} value={card.value} suit={card.suit} />
+            <NewCard key={index} index={index} value={card.value} suit={card.suit} isPlayer={isPlayer} />
           ))}
         </div>
       </div>

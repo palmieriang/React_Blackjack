@@ -50,6 +50,13 @@ span.reverse {
   -ms-transform: scale(-1, -1);
   transform: scale(-1, -1); }
 
+.card.first-card {
+  background-color: lightblue;
+  box-shadow: inset 0px 0px 140px #9298e4;
+  -webkit-box-shadow: inset 0px 0px 140px #9298e4;
+  -moz-box-shadow: inset 0px 0px 140px #9298e4;
+  -o-box-shadow: inset 0px 0px 140px #9298e4; }
+
 .Hearts, .Diamonds {
   color: red; }
 
