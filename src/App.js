@@ -29,6 +29,7 @@ class App extends Component {
     this.stick = this.stick.bind(this)
     this.calculateScore = this.calculateScore.bind(this)
     this.start = this.start.bind(this)
+    this.shuffleCards = this.shuffleCards.bind(this)
   }
 
   createDeck() {
@@ -119,6 +120,15 @@ class App extends Component {
 
   start() {
     const {deck} = this.state
+    this.dealCard(deck)
+  }
+
+  shuffleCards() {
+    const deck = this.shuffle(this.createDeck())
+    this.dealCard(deck)
+  }
+
+  dealCard(deck) {
     const [card1, card2, card3, card4, ...cards] = deck
 
     this.setState({
@@ -144,15 +154,16 @@ class App extends Component {
 
         <div className="console-center">
           <div>
-            <p>{this.calculateScore(playerCards)}</p>
+            <p>Player Score: {this.calculateScore(playerCards)}</p>
           </div>
           <div>
-            <button onClick={() => this.deal(true)} disabled={this.checkWinner(playerCards).length > 0}>Hit</button>
-            <button onClick={this.stick} disabled={this.checkWinner(playerCards).length > 0}>Stick</button>
-            <button onClick={this.start}>Play again</button>
+            <button className="btn btn1" onClick={() => this.deal(true)} disabled={this.checkWinner(playerCards).length > 0}>Hit</button>
+            <button className="btn btn2" onClick={this.stick} disabled={this.checkWinner(playerCards).length > 0}>Stick</button>
+            <button className="btn btn3" onClick={this.start}>Play again</button>
+            <button className="btn btn4" onClick={this.shuffleCards}>Shuffle Cards</button>
           </div>
           <div>
-            <p>{this.calculateScore(dealerCards)}</p>
+            <p>Dealer Score: {!isPlayer && <span>{this.calculateScore(dealerCards)}</span>}</p>
           </div>
         </div>
 

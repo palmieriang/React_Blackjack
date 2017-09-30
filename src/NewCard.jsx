@@ -5,7 +5,6 @@ import './App.css'
 class NewCard extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
         {this.props.index !== 0 && <div className={`card ${this.props.suit}`}>
